@@ -1,0 +1,27 @@
+modLoader = "javafml"
+loaderVersion = "[35,)"
+license = "All rights reserved"
+
+[[mods]]
+    modId = "madeconomy"
+    version = "${file.jarVersion}"
+    displayName = "MadEconomy"
+#    updateJSONURL = "https://connordavis.tech/mods/madeconomy/update"
+    authors = "darkio_"
+    description = '''
+    A mad economy
+    '''
+
+[[dependencies.madeconomy]]
+    modId = "forge"
+    mandatory = true
+    versionRange = "[35,)"
+    ordering = "NONE"
+    side = "BOTH"
+
+[[dependencies.madeconomy]]
+    modId = "minecraft"
+    mandatory = true
+    versionRange = "[1.16.4,)"
+    ordering = "NONE"
+    side = "BOTH"

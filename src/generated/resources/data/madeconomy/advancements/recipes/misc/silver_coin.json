@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "madeconomy:silver_coin"
+    ]
+  },
+  "criteria": {
+    "silver_coin": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "madeconomy:silver_coin"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "madeconomy:silver_coin"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "silver_coin",
+      "has_the_recipe"
+    ]
+  ]
+}

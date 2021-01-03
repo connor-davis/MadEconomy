@@ -1,0 +1,9 @@
+{
+  "type": "minecraft:smelting",
+  "ingredient": {
+    "item": "madeconomy:silver_ore"
+  },
+  "result": "madeconomy:silver_ingot",
+  "experience": 0.0,
+  "cookingtime": 200
+}

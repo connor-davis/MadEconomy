@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "madeconomy:block/silver_block"
+    }
+  }
+}

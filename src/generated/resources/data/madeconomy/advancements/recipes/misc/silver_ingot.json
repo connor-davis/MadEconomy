@@ -1,0 +1,32 @@
+{
+  "parent": "minecraft:recipes/root",
+  "rewards": {
+    "recipes": [
+      "madeconomy:silver_ingot"
+    ]
+  },
+  "criteria": {
+    "silver_ingot": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "madeconomy:silver_ingot"
+          }
+        ]
+      }
+    },
+    "has_the_recipe": {
+      "trigger": "minecraft:recipe_unlocked",
+      "conditions": {
+        "recipe": "madeconomy:silver_ingot"
+      }
+    }
+  },
+  "requirements": [
+    [
+      "silver_ingot",
+      "has_the_recipe"
+    ]
+  ]
+}
