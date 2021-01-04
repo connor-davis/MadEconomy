@@ -17,6 +17,7 @@ import net.minecraft.util.text.ITextComponent;
 import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraftforge.common.util.Constants;
+import tech.connordavis.madeconomy.containers.MagicalSafeContainer;
 import tech.connordavis.madeconomy.items.ModItems;
 import tech.connordavis.madeconomy.utils.ModFormatText;
 import tech.connordavis.madeconomy.utils.ModProperties;
@@ -63,7 +64,7 @@ public class MagicalSafeTileEntity extends LockableLootTileEntity {
 
     @Override
     protected Container createMenu(int id, PlayerInventory player) {
-        return null;
+        return new MagicalSafeContainer(id, player, this);
     }
 
     @Override
