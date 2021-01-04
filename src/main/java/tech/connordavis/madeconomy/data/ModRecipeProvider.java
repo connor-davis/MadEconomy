@@ -1,14 +1,11 @@
 package tech.connordavis.madeconomy.data;
 
 import net.minecraft.advancements.criterion.InventoryChangeTrigger;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.material.Material;
 import net.minecraft.data.*;
 import net.minecraft.item.crafting.Ingredient;
 import net.minecraftforge.common.Tags;
 import tech.connordavis.madeconomy.blocks.ModBlocks;
 import tech.connordavis.madeconomy.items.ModItems;
-import tech.connordavis.madeconomy.tags.ModTags;
 
 import java.util.function.Consumer;
 
@@ -25,6 +22,16 @@ public class ModRecipeProvider extends RecipeProvider {
                 .patternLine("##")
                 .key('#', ModItems.SILVER_NUGGET.get())
                 .addCriterion("silver_coin", InventoryChangeTrigger.Instance.forItems(ModItems.SILVER_COIN.get()))
+                .build(consumer);
+
+        ShapedRecipeBuilder
+                .shapedRecipe(ModItems.WALLET.get())
+                .patternLine("###")
+                .patternLine("#%#")
+                .patternLine("###")
+                .key('#', Tags.Items.LEATHER)
+                .key('%', ModItems.SILVER_COIN.get())
+                .addCriterion("wallet", InventoryChangeTrigger.Instance.forItems(ModItems.WALLET.get()))
                 .build(consumer);
 
         ShapelessRecipeBuilder

@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": {"model":  "madeconomy:block/magical_safe" },
+    "facing=south": {"model":  "madeconomy:block/magical_safe", "y": 180 },
+    "facing=east": {"model":  "madeconomy:block/magical_safe", "y": 90 },
+    "facing=west": {"model":  "madeconomy:block/magical_safe", "y": 270 }
+  }
+}

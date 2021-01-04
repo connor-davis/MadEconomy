@@ -30,6 +30,9 @@ public class ModTags {
         public static final ITag.INamedTag<Item> NUGGETS_SILVER = forge("nuggets/silver");
         public static final ITag.INamedTag<Item> INGOTS_SILVER = forge("ingots/silver");
 
+        public static final ITag.INamedTag<Item> SILVER_COIN = mod("items/silver_coin");
+        public static final ITag.INamedTag<Item> WALLET = mod("items/wallet");
+
         private static ITag.INamedTag<Item> forge(String path) {
             return ItemTags.makeWrapperTag(new ResourceLocation("forge", path).toString());
         }

@@ -16,12 +16,14 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
         withExistingParent("silver_block", modLoc("block/silver_block"));
         withExistingParent("silver_ore", modLoc("block/silver_ore"));
+        withExistingParent("magical_safe", modLoc("block/magical_safe"));
 
         ModelFile itemGenerated = getExistingFile(mcLoc("item/generated"));
 
         builder(itemGenerated, "silver_ingot");
         builder(itemGenerated, "silver_nugget");
         builder(itemGenerated, "silver_coin");
+        builder(itemGenerated, "wallet");
     }
 
     private ItemModelBuilder builder(ModelFile itemGenerated, String name) {
