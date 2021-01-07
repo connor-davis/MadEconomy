@@ -1,7 +1,6 @@
 package tech.connordavis.madeconomy.gui;
 
 import com.mojang.blaze3d.matrix.MatrixStack;
-import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
@@ -31,14 +30,12 @@ public class MagicalSafeScreen extends ContainerScreen<MagicalSafeContainer> {
 
     @Override
     protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
-        super.drawGuiContainerForegroundLayer(matrixStack, x, y);
-        this.font.drawString(matrixStack, this.title.getString(), 3.0f, 3.0f, 4210752);
-        this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 3.0f, (float) this.ySize - 107, 4210752);
+        this.font.drawString(matrixStack, this.title.getString(), 3.0f, 3.0f, 16777215);
+        this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 3.0f, (float) this.ySize - 92, 16777215);
     }
 
     @Override
     protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        RenderSystem.color4f(1.0f, 1.0f, 1.0f, 1.0f);
         this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
 
         int x = (this.width - this.xSize) / 2;

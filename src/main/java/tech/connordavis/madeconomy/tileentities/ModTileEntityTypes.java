@@ -2,11 +2,8 @@ package tech.connordavis.madeconomy.tileentities;
 
 import net.minecraft.tileentity.TileEntityType;
 import net.minecraftforge.fml.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
 import tech.connordavis.madeconomy.blocks.ModBlocks;
 import tech.connordavis.madeconomy.registry.ModRegistry;
-import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class ModTileEntityTypes {
 

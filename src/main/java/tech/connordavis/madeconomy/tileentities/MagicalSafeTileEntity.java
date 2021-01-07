@@ -1,32 +1,40 @@
 package tech.connordavis.madeconomy.tileentities;
 
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.inventory.ItemStackHelper;
 import net.minecraft.inventory.container.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.CompoundNBT;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SUpdateTileEntityPacket;
 import net.minecraft.tileentity.LockableLootTileEntity;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityType;
+import net.minecraft.util.Direction;
 import net.minecraft.util.NonNullList;
+import net.minecraft.util.SoundCategory;
+import net.minecraft.util.SoundEvent;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.text.ITextComponent;
-import net.minecraft.util.text.StringTextComponent;
 import net.minecraft.util.text.TranslationTextComponent;
-import net.minecraftforge.common.util.Constants;
+import net.minecraft.world.IBlockReader;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.items.CapabilityItemHandler;
+import net.minecraftforge.items.IItemHandlerModifiable;
+import net.minecraftforge.items.wrapper.InvWrapper;
+import tech.connordavis.madeconomy.blocks.MagicalSafe;
 import tech.connordavis.madeconomy.containers.MagicalSafeContainer;
-import tech.connordavis.madeconomy.items.ModItems;
-import tech.connordavis.madeconomy.utils.ModFormatText;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
-import javax.annotation.Nullable;
+import javax.annotation.Nonnull;
 
 public class MagicalSafeTileEntity extends LockableLootTileEntity {
-    private static final int[] SLOTS = new int[]{0};
-    protected NonNullList<ItemStack> items = NonNullList.withSize(9, ItemStack.EMPTY);
+    protected NonNullList<ItemStack> safeContents = NonNullList.withSize(9, ItemStack.EMPTY);
+    protected int numPlayersUsing;
+    private final IItemHandlerModifiable items = createHandler();
+    private LazyOptional<IItemHandlerModifiable> itemHandler = LazyOptional.of(() -> items);
 
     public MagicalSafeTileEntity(TileEntityType<?> tileEntityType) {
         super(tileEntityType);
@@ -37,29 +45,23 @@ public class MagicalSafeTileEntity extends LockableLootTileEntity {
     }
 
     @Override
-    public void setItems(NonNullList<ItemStack> items) {
-        this.items = items;
+    public int getSizeInventory() {
+        return 9;
     }
 
     @Override
     public NonNullList<ItemStack> getItems() {
-        return this.items;
+        return this.safeContents;
     }
 
     @Override
-    public void markDirty() {
-        super.markDirty();
-
-        if (this.world != null) {
-            this.world.notifyBlockUpdate(this.getPos(), this.getBlockState(), this.getBlockState(), Constants.BlockFlags.BLOCK_UPDATE);
-        }
+    protected void setItems(NonNullList<ItemStack> items) {
+        this.safeContents = items;
     }
 
     @Override
     protected ITextComponent getDefaultName() {
-        return
-                new StringTextComponent(
-                        ModFormatText.format(new TranslationTextComponent("container." + ModProperties.MOD_ID + ".magical_safe").toString()));
+        return new TranslationTextComponent("container." + ModProperties.MOD_ID + ".magical_safe");
     }
 
     @Override
@@ -68,104 +70,116 @@ public class MagicalSafeTileEntity extends LockableLootTileEntity {
     }
 
     @Override
-    public int getSizeInventory() {
-        return this.items.size();
-    }
+    public CompoundNBT write(CompoundNBT compound) {
+        super.write(compound);
 
-    @Override
-    public boolean isEmpty() {
-        return this.items.isEmpty();
-    }
-
-    @Override
-    public ItemStack getStackInSlot(int index) {
-        return this.items.get(index);
-    }
-
-    @Override
-    public ItemStack decrStackSize(int index, int count) {
-        return ItemStackHelper.getAndSplit(this.items, index, count);
-    }
-
-    @Override
-    public ItemStack removeStackFromSlot(int index) {
-        return ItemStackHelper.getAndRemove(this.items, index);
-    }
-
-    @Override
-    public void setInventorySlotContents(int index, ItemStack stack) {
-        ItemStack itemStack = this.items.get(index);
-
-        boolean flag = !stack.isEmpty()
-                && stack.isItemEqual(itemStack)
-                && ItemStack.areItemStackTagsEqual(stack, itemStack);
-
-        if (stack.getCount() > this.getSizeInventory()) {
-            stack.setCount(this.getInventoryStackLimit());
+        if (!this.checkLootAndWrite(compound)) {
+            ItemStackHelper.saveAllItems(compound, this.safeContents);
         }
 
-        if (!flag) {
-            this.markDirty();
-        }
-    }
-
-    @Override
-    public boolean isUsableByPlayer(PlayerEntity player) {
-        if (this.world.getTileEntity(pos) != this) {
-            return false;
-        } else {
-            return player.getDistanceSq((double) this.pos.getX() + 0.5D, this.pos.getY() + 0.5D, this.pos.getZ() + 0.5D) <= 64D;
-        }
-    }
-
-    @Override
-    public boolean isItemValidForSlot(int index, ItemStack stack) {
-        return !stack.isItemEqual(ModItems.SILVER_COIN.get().getDefaultInstance());
-    }
-
-    @Override
-    public void clear() {
-        super.clear();
-        this.items.clear();
-    }
-
-    @Nullable
-    @Override
-    public SUpdateTileEntityPacket getUpdatePacket() {
-        CompoundNBT nbt = new CompoundNBT();
-        this.write(nbt);
-
-        return new SUpdateTileEntityPacket(this.getPos(), 1, nbt);
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager net, SUpdateTileEntityPacket pkt) {
-        if (Minecraft.getInstance().world != null) {
-            this.read(Minecraft.getInstance().world.getBlockState(pkt.getPos()), pkt.getNbtCompound());
-        }
-    }
-
-    @Override
-    public CompoundNBT getUpdateTag() {
-        return this.write(new CompoundNBT());
-    }
-
-    @Override
-    public void handleUpdateTag(BlockState state, CompoundNBT tag) {
-        this.read(state, tag);
+        return compound;
     }
 
     @Override
     public void read(BlockState state, CompoundNBT compound) {
         super.read(state, compound);
-        this.items = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
-        ItemStackHelper.loadAllItems(compound, this.items);
+
+        this.safeContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
+
+        if (!this.checkLootAndRead(compound)) {
+            ItemStackHelper.loadAllItems(compound, this.safeContents);
+        }
+    }
+
+    public void playSound(SoundEvent sound) {
+        double dx = (double) this.pos.getX() + 0.5D;
+        double dy = (double) this.pos.getY() + 0.5D;
+        double dz = (double) this.pos.getZ() + 0.5D;
+
+        this.world.playSound(null, dx, dy, dz, sound, SoundCategory.BLOCKS, 0.5f, this.world.rand.nextFloat() * 0.9f);
     }
 
     @Override
-    public CompoundNBT write(CompoundNBT compound) {
-        super.write(compound);
-        ItemStackHelper.saveAllItems(compound, this.items);
-        return compound;
+    public boolean receiveClientEvent(int id, int type) {
+        if (id == 1) {
+            this.numPlayersUsing = type;
+            return true;
+        } else {
+            return super.receiveClientEvent(id, type);
+        }
+    }
+
+    @Override
+    public void openInventory(PlayerEntity player) {
+        if (!player.isSpectator()) {
+            if (this.numPlayersUsing < 0) {
+                this.numPlayersUsing = 0;
+            }
+
+            ++this.numPlayersUsing;
+            this.onOpenOrClose();
+        }
+    }
+
+    @Override
+    public void closeInventory(PlayerEntity player) {
+        if (!player.isSpectator()) {
+            --this.numPlayersUsing;
+            this.onOpenOrClose();
+        }
+    }
+
+    protected void onOpenOrClose() {
+        Block block = this.getBlockState().getBlock();
+        if (block instanceof MagicalSafe) {
+            this.world.addBlockEvent(this.pos, block, 1, this.numPlayersUsing);
+            this.world.notifyNeighborsOfStateChange(this.pos, block);
+        }
+    }
+
+    public static int getPlayersUsing(IBlockReader reader, BlockPos pos) {
+        BlockState blockstate = reader.getBlockState(pos);
+        if (blockstate.hasTileEntity()) {
+            TileEntity tileentity = reader.getTileEntity(pos);
+            if (tileentity instanceof MagicalSafeTileEntity) {
+                return ((MagicalSafeTileEntity) tileentity).numPlayersUsing;
+            }
+        }
+        return 0;
+    }
+
+    public static void swapContents(MagicalSafeTileEntity te, MagicalSafeTileEntity otherTe) {
+        NonNullList<ItemStack> list = te.getItems();
+        te.setItems(otherTe.getItems());
+        otherTe.setItems(list);
+    }
+
+    @Override
+    public void updateContainingBlockInfo() {
+        super.updateContainingBlockInfo();
+        if (this.itemHandler != null) {
+            this.itemHandler.invalidate();
+            this.itemHandler = null;
+        }
+    }
+
+    @Override
+    public <T> LazyOptional<T> getCapability(@Nonnull Capability<T> cap, @Nonnull Direction side) {
+        if (cap == CapabilityItemHandler.ITEM_HANDLER_CAPABILITY) {
+            return itemHandler.cast();
+        }
+        return super.getCapability(cap, side);
+    }
+
+    private IItemHandlerModifiable createHandler() {
+        return new InvWrapper(this);
+    }
+
+    @Override
+    public void remove() {
+        super.remove();
+        if (itemHandler != null) {
+            itemHandler.invalidate();
+        }
     }
 }

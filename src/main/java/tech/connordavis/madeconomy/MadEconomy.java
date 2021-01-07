@@ -8,6 +8,7 @@ import tech.connordavis.madeconomy.registry.ModRegistry;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
 @Mod(ModProperties.MOD_ID)
+@Mod.EventBusSubscriber(modid = ModProperties.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MadEconomy {
     public static final Logger LOGGER = LogManager.getLogger();
 

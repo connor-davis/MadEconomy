@@ -1,7 +1,6 @@
 package tech.connordavis.madeconomy.data;
 
 import net.minecraft.data.DataGenerator;
-import net.minecraftforge.fml.common.Mod;
 import tech.connordavis.madeconomy.blocks.ModBlocks;
 import tech.connordavis.madeconomy.utils.BaseLootTableProvider;
 

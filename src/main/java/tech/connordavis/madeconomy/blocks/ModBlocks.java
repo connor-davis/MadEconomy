@@ -24,8 +24,7 @@ public class ModBlocks {
     /**
      * "Special" Blocks
      */
-    public static final RegistryObject<MagicalSafe> MAGICAL_SAFE = register("magical_safe", () ->
-            new MagicalSafe(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(3, 10).sound(SoundType.METAL)));
+    public static final RegistryObject<MagicalSafe> MAGICAL_SAFE = register("magical_safe", MagicalSafe::new);
 
     public static void register() {
     }
