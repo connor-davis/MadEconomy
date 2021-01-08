@@ -1,9 +1,6 @@
 package tech.connordavis.madeconomy.blocks;
 
-import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.SoundType;
-import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
@@ -16,10 +13,8 @@ public class ModBlocks {
     /**
      * "Default" Blocks
      */
-    public static final RegistryObject<Block> SILVER_ORE = register("silver_ore", () ->
-            new Block(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(3, 10).harvestLevel(2).sound(SoundType.STONE)));
-    public static final RegistryObject<Block> SILVER_BLOCK = register("silver_block", () ->
-            new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(3, 10).sound(SoundType.METAL)));
+    public static final RegistryObject<Block> SILVER_ORE = register("silver_ore", SilverOre::new);
+    public static final RegistryObject<Block> SILVER_BLOCK = register("silver_block", SilverBlock::new);
 
     /**
      * "Special" Blocks

@@ -14,8 +14,6 @@ public class MadEconomy {
 
     public MadEconomy() {
         ModRegistry.register();
-
         MinecraftForge.EVENT_BUS.register(this);
     }
-
 }
