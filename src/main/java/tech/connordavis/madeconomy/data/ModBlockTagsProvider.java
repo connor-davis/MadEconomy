@@ -19,6 +19,9 @@ public class ModBlockTagsProvider extends BlockTagsProvider {
         getOrCreateTagBuilder(ModTags.Blocks.ORES_SILVER).add(ModBlocks.SILVER_ORE.get());
         getOrCreateTagBuilder(Tags.Blocks.ORES).addTag(ModTags.Blocks.ORES_SILVER);
 
+        getOrCreateTagBuilder(ModTags.Blocks.ORES_MAGIC).add(ModBlocks.MAGIC_ORE.get());
+        getOrCreateTagBuilder(Tags.Blocks.ORES).addTag(ModTags.Blocks.ORES_MAGIC);
+
         getOrCreateTagBuilder(ModTags.Blocks.STORAGE_BLOCKS_SILVER).add(ModBlocks.SILVER_BLOCK.get());
         getOrCreateTagBuilder(Tags.Blocks.STORAGE_BLOCKS).addTag(ModTags.Blocks.STORAGE_BLOCKS_SILVER);
     }

@@ -9,7 +9,7 @@ import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import tech.connordavis.madeconomy.config.ModConfigs;
-import tech.connordavis.madeconomy.features.ModWorldFeatures;
+import tech.connordavis.madeconomy.worldgeneration.ModWorldFeatures;
 import tech.connordavis.madeconomy.registry.ModRegistry;
 
 @Mod(MadEconomy.ID)

@@ -1,7 +1,7 @@
 package tech.connordavis.madeconomy.config;
 
 import net.minecraftforge.common.ForgeConfigSpec;
-import tech.connordavis.madeconomy.features.ModWorldFeatures;
+import tech.connordavis.madeconomy.worldgeneration.ModWorldFeatures;
 
 public class CWorldGen extends ConfigBase {
     public ConfigBool disable = b(false, "disableWorldGen", Comments.disable);

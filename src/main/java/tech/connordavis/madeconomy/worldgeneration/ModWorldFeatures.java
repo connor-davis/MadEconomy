@@ -1,4 +1,4 @@
-package tech.connordavis.madeconomy.features;
+package tech.connordavis.madeconomy.worldgeneration;
 
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.Biomes;
@@ -12,7 +12,18 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum ModWorldFeatures {
-    SILVER_ORE(new CountedOreFeature(ModBlocks.SILVER_ORE, 18, 2).between(40, 86));
+    /**
+     * Counted Ores
+     */
+    SILVER_ORE(new CountedOreFeature(ModBlocks.SILVER_ORE, 18, 2).between(40, 86)),
+
+    /**
+     * Chance Ores
+     */
+    MAGIC_ORE(new ChanceOreFeature(ModBlocks.MAGIC_ORE, 4, 1 / 32f).between(0, 30)),
+
+
+    ;
 
     /**
      * Increment this number if all world gen entries should be overwritten in this

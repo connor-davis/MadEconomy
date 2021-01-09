@@ -12,6 +12,7 @@ import tech.connordavis.madeconomy.utils.ModProperties;
 public class ModTags {
     public static final class Blocks {
         public static final ITag.INamedTag<Block> ORES_SILVER = forge("ores/silver");
+        public static final ITag.INamedTag<Block> ORES_MAGIC = forge("ores/magic");
         public static final ITag.INamedTag<Block> STORAGE_BLOCKS_SILVER = forge("storage_blocks/silver");
 
         private static ITag.INamedTag<Block> forge(String path) {
@@ -26,6 +27,7 @@ public class ModTags {
 
     public static final class Items {
         public static final ITag.INamedTag<Item> ORES_SILVER = forge("ores/silver");
+        public static final ITag.INamedTag<Item> ORES_MAGIC = forge("ores/magic");
         public static final ITag.INamedTag<Item> STORAGE_BLOCKS_SILVER = forge("storage_blocks/silver");
 
         public static final ITag.INamedTag<Item> NUGGETS_SILVER = forge("nuggets/silver");

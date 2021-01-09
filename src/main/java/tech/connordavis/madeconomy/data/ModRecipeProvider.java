@@ -16,6 +16,9 @@ public class ModRecipeProvider extends RecipeProvider {
 
     @Override
     protected void registerRecipes(Consumer<IFinishedRecipe> consumer) {
+        /*
+          Shaped Recipes
+         */
         ShapedRecipeBuilder
                 .shapedRecipe(ModItems.SILVER_COIN.get())
                 .patternLine("##")
@@ -34,12 +37,18 @@ public class ModRecipeProvider extends RecipeProvider {
                 .addCriterion("wallet", InventoryChangeTrigger.Instance.forItems(ModItems.WALLET.get()))
                 .build(consumer);
 
+        /*
+          Shapeless Recipes
+         */
         ShapelessRecipeBuilder
                 .shapelessRecipe(ModItems.SILVER_NUGGET.get(), 9)
                 .addIngredient(ModItems.SILVER_INGOT.get())
                 .addCriterion("silver_nugget", InventoryChangeTrigger.Instance.forItems(ModItems.SILVER_NUGGET.get()))
                 .build(consumer);
 
+        /*
+          Smelting Recipes
+         */
         CookingRecipeBuilder
                 .smeltingRecipe(
                         Ingredient.fromItems(ModBlocks.SILVER_ORE.get()),
@@ -47,6 +56,15 @@ public class ModRecipeProvider extends RecipeProvider {
                         0,
                         200)
                 .addCriterion("silver_ingot", InventoryChangeTrigger.Instance.forItems(ModItems.SILVER_INGOT.get()))
+                .build(consumer);
+
+        CookingRecipeBuilder
+                .smeltingRecipe(
+                        Ingredient.fromItems(ModBlocks.MAGIC_ORE.get()),
+                        ModItems.MAGIC_SHARD.get(),
+                        0,
+                        200)
+                .addCriterion("magic_shard", InventoryChangeTrigger.Instance.forItems(ModItems.MAGIC_SHARD.get()))
                 .build(consumer);
     }
 }

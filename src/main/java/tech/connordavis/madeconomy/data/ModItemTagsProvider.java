@@ -19,6 +19,8 @@ public class ModItemTagsProvider extends ItemTagsProvider {
     protected void registerTags() {
         copy(ModTags.Blocks.ORES_SILVER, ModTags.Items.ORES_SILVER);
         copy(Tags.Blocks.ORES, Tags.Items.ORES);
+        copy(ModTags.Blocks.ORES_MAGIC, ModTags.Items.ORES_MAGIC);
+        copy(Tags.Blocks.ORES, Tags.Items.ORES);
         copy(ModTags.Blocks.STORAGE_BLOCKS_SILVER, ModTags.Items.STORAGE_BLOCKS_SILVER);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 

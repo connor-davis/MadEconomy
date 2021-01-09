@@ -12,6 +12,7 @@ public class ModLootTableProvider extends BaseLootTableProvider {
     @Override
     protected void addTables() {
         lootTables.put(ModBlocks.SILVER_ORE.get(), createStandardTable("silver_ore", ModBlocks.SILVER_ORE.get()));
+        lootTables.put(ModBlocks.MAGIC_ORE.get(), createStandardTable("magic_ore", ModBlocks.MAGIC_ORE.get()));
         lootTables.put(ModBlocks.SILVER_BLOCK.get(), createStandardTable("silver_block", ModBlocks.SILVER_BLOCK.get()));
         lootTables.put(ModBlocks.MAGICAL_SAFE.get(), createStandardTable("magical_safe", ModBlocks.MAGICAL_SAFE.get()));
     }

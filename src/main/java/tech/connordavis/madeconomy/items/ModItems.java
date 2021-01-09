@@ -2,6 +2,7 @@ package tech.connordavis.madeconomy.items;
 
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
+import net.minecraftforge.fml.common.Mod;
 import tech.connordavis.madeconomy.groups.ModItemGroup;
 import tech.connordavis.madeconomy.registry.ModRegistry;
 
@@ -13,6 +14,8 @@ public class ModItems {
             new Item(new Item.Properties().group(ModItemGroup.MAIN_GROUP)));
     public static final RegistryObject<Item> SILVER_NUGGET = ModRegistry.ITEMS.register("silver_nugget", () ->
             new Item(new Item.Properties().group(ModItemGroup.MAIN_GROUP)));
+    public static final RegistryObject<Item> MAGIC_SHARD = ModRegistry.ITEMS.register("magic_shard", () ->
+            new Item(new Item.Properties().fireproof().group(ModItemGroup.MAIN_GROUP)));
 
     /**
      * "Special" Items

@@ -1,4 +1,4 @@
-package tech.connordavis.madeconomy.features;
+package tech.connordavis.madeconomy.worldgeneration;
 
 import net.minecraft.block.Block;
 import net.minecraft.world.gen.feature.ConfiguredFeature;
