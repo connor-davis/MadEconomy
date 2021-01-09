@@ -2,17 +2,16 @@ package tech.connordavis.madeconomy.blocks;
 
 import net.minecraft.block.AbstractBlock;
 import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.Item;
 import net.minecraftforge.fml.RegistryObject;
-import tech.connordavis.madeconomy.groups.ModItemGroup;
 import tech.connordavis.madeconomy.registry.ModRegistry;
 
 import java.util.function.Supplier;
-import java.util.function.ToIntFunction;
+
+import static tech.connordavis.madeconomy.groups.ModItemGroup.MAIN_GROUP;
 
 public class ModBlocks {
     /**
@@ -23,12 +22,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> SILVER_BLOCK = register("silver_block", () ->
             new Block(AbstractBlock.Properties.create(Material.IRON).hardnessAndResistance(3, 10).sound(SoundType.METAL)));
     public static final RegistryObject<Block> MAGIC_ORE = register("magic_ore", () ->
-            new Block(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(3, 10).harvestLevel(2).luminance(new ToIntFunction<BlockState>() {
-                @Override
-                public int applyAsInt(BlockState value) {
-                    return value.getLightValue() + 10;
-                }
-            }).sound(SoundType.STONE)));
+            new Block(AbstractBlock.Properties.create(Material.ROCK).hardnessAndResistance(3, 10).harvestLevel(2).luminance(value -> value.getLightValue() + 10).sound(SoundType.STONE)));
 
     /**
      * "Special" Blocks
@@ -44,7 +38,7 @@ public class ModBlocks {
 
     private static <T extends Block> RegistryObject<T> register(String name, Supplier<T> block) {
         RegistryObject<T> ret = registerNoItem(name, block);
-        ModRegistry.ITEMS.register(name, () -> new BlockItem(ret.get(), new Item.Properties().group(ModItemGroup.MAIN_GROUP)));
+        ModRegistry.ITEMS.register(name, () -> new BlockItem(ret.get(), new Item.Properties().group(MAIN_GROUP.get())));
         return ret;
     }
 }
