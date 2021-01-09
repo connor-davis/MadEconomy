@@ -22,14 +22,15 @@ import net.minecraft.util.text.TranslationTextComponent;
 import net.minecraft.world.IBlockReader;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.network.NetworkHooks;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.containers.MagicalSafeContainer;
 import tech.connordavis.madeconomy.shapes.MagicalSafeShapes;
 import tech.connordavis.madeconomy.tileentities.MagicalSafeTileEntity;
 import tech.connordavis.madeconomy.tileentities.ModTileEntityTypes;
-import tech.connordavis.madeconomy.utils.ModProperties;
 
 import javax.annotation.Nullable;
 
+@SuppressWarnings({"NullableProblems", "deprecation"})
 public class MagicalSafe extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
@@ -76,7 +77,7 @@ public class MagicalSafe extends Block {
                 INamedContainerProvider containerProvider = new INamedContainerProvider() {
                     @Override
                     public ITextComponent getDisplayName() {
-                        return new TranslationTextComponent("container." + ModProperties.MOD_ID + ".magical_safe");
+                        return new TranslationTextComponent("container." + MadEconomy.ID + ".magical_safe");
                     }
 
                     @Override

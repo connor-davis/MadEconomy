@@ -5,13 +5,14 @@ import net.minecraft.data.DataGenerator;
 import net.minecraft.data.ItemTagsProvider;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.items.ModItems;
 import tech.connordavis.madeconomy.tags.ModTags;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class ModItemTagsProvider extends ItemTagsProvider {
     public ModItemTagsProvider(DataGenerator dataGenerator, BlockTagsProvider blockTagProvider, ExistingFileHelper existingFileHelper) {
-        super(dataGenerator, blockTagProvider, ModProperties.MOD_ID, existingFileHelper);
+        super(dataGenerator, blockTagProvider, MadEconomy.ID, existingFileHelper);
     }
 
     @Override

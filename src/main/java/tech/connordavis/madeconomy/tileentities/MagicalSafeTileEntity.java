@@ -24,6 +24,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.CapabilityItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 import net.minecraftforge.items.wrapper.InvWrapper;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.blocks.MagicalSafe;
 import tech.connordavis.madeconomy.containers.MagicalSafeContainer;
 import tech.connordavis.madeconomy.utils.ModProperties;
@@ -61,7 +62,7 @@ public class MagicalSafeTileEntity extends LockableLootTileEntity {
 
     @Override
     protected ITextComponent getDefaultName() {
-        return new TranslationTextComponent("container." + ModProperties.MOD_ID + ".magical_safe");
+        return new TranslationTextComponent("container." + MadEconomy.ID + ".magical_safe");
     }
 
     @Override

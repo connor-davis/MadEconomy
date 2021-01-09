@@ -6,12 +6,13 @@ import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.client.registry.ClientRegistry;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.containers.ModContainerTypes;
 import tech.connordavis.madeconomy.gui.MagicalSafeScreen;
 import tech.connordavis.madeconomy.tileentities.renderer.MagicalSafeRenderer;
 import tech.connordavis.madeconomy.tileentities.ModTileEntityTypes;
 
-@Mod.EventBusSubscriber(modid = ModProperties.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
+@Mod.EventBusSubscriber(modid = MadEconomy.ID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ClientEventBusSubscriber {
     @SubscribeEvent
     public static void clientSetup(FMLClientSetupEvent event) {

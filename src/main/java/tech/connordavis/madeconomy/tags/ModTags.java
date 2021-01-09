@@ -6,6 +6,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ITag;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.ResourceLocation;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class ModTags {
@@ -18,7 +19,7 @@ public class ModTags {
         }
 
         private static ITag.INamedTag<Block> mod(String path) {
-            return BlockTags.makeWrapperTag(new ResourceLocation(ModProperties.MOD_ID, path).toString());
+            return BlockTags.makeWrapperTag(new ResourceLocation(MadEconomy.ID, path).toString());
         }
     }
 
@@ -38,7 +39,7 @@ public class ModTags {
         }
 
         private static ITag.INamedTag<Item> mod(String path) {
-            return ItemTags.makeWrapperTag(new ResourceLocation(ModProperties.MOD_ID, path).toString());
+            return ItemTags.makeWrapperTag(new ResourceLocation(MadEconomy.ID, path).toString());
         }
     }
 }

@@ -5,11 +5,12 @@ import net.minecraft.client.gui.screen.inventory.ContainerScreen;
 import net.minecraft.entity.player.PlayerInventory;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.containers.MagicalSafeContainer;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class MagicalSafeScreen extends ContainerScreen<MagicalSafeContainer> {
-    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(ModProperties.MOD_ID, "textures/gui/magical_safe.png");
+    private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(MadEconomy.ID, "textures/gui/magical_safe.png");
 
     public MagicalSafeScreen(MagicalSafeContainer container, PlayerInventory playerInventory, ITextComponent title) {
         super(container, playerInventory, title);

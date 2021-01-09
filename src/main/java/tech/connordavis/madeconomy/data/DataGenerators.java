@@ -5,11 +5,12 @@ import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.GatherDataEvent;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.data.client.ModBlockStateProvider;
 import tech.connordavis.madeconomy.data.client.ModItemModelProvider;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
-@Mod.EventBusSubscriber(modid = ModProperties.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@Mod.EventBusSubscriber(modid = MadEconomy.ID, bus = Mod.EventBusSubscriber.Bus.MOD)
 public final class DataGenerators {
     private DataGenerators() {}
 

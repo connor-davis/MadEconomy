@@ -5,11 +5,12 @@ import net.minecraftforge.client.model.generators.ItemModelBuilder;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class ModItemModelProvider extends ItemModelProvider {
     public ModItemModelProvider(DataGenerator generator, ExistingFileHelper existingFileHelper) {
-        super(generator, ModProperties.MOD_ID, existingFileHelper);
+        super(generator, MadEconomy.ID, existingFileHelper);
     }
 
     @Override
