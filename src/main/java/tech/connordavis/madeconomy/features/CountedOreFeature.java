@@ -8,7 +8,6 @@ import net.minecraft.world.gen.placement.Placement;
 import net.minecraftforge.event.world.BiomeLoadingEvent;
 import net.minecraftforge.fml.RegistryObject;
 import org.apache.commons.lang3.tuple.Pair;
-import tech.connordavis.madeconomy.MadEconomy;
 
 import java.util.Optional;
 
@@ -22,7 +21,7 @@ public class CountedOreFeature extends OreFeature<NoPlacementConfig> {
 
     @Override
     protected boolean canGenerate() {
-        return super.canGenerate() || clusterCount.get() <= 0;
+        return super.canGenerate() && clusterCount.get() > 0;
     }
 
     @Override
@@ -32,6 +31,6 @@ public class CountedOreFeature extends OreFeature<NoPlacementConfig> {
 
     @Override
     public Optional<ConfiguredFeature<?, ?>> createFeature(BiomeLoadingEvent biome) {
-        return super.createFeature(biome);
+        return super.createFeature(biome).map(cf -> cf.repeat(this.clusterCount.get()));
     }
 }

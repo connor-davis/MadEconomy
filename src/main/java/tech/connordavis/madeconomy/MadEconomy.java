@@ -16,6 +16,7 @@ import tech.connordavis.madeconomy.registry.ModRegistry;
 public class MadEconomy {
     public static final Logger LOGGER = LogManager.getLogger();
     public static final String ID = "madeconomy";
+    public static final int VERSION = 1;
 
     public MadEconomy() {
         ModRegistry.register();

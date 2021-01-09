@@ -64,12 +64,13 @@ public abstract class OreFeature<T extends IPlacementConfig> extends ConfigBase 
 
         Pair<Placement<T>, T> placement = getPlacement();
         ConfiguredFeature<?, ?> createdFeature = Feature.ORE
-                .withConfiguration(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, block.get()
+                .configure(new OreFeatureConfig(OreFeatureConfig.FillerBlockType.BASE_STONE_OVERWORLD, block.get()
                         .getDefaultState(), clusterSize.get()))
-                .withPlacement(placement.getKey()
+                .decorate(placement.getKey()
                         .configure(placement.getValue()))
-                .withPlacement(Placement.RANGE
-                        .configure(new TopSolidRangeConfig(minHeight.get(), 0, maxHeight.get() - minHeight.get())));
+                .decorate(Placement.RANGE
+                        .configure(new TopSolidRangeConfig(minHeight.get(), 0, maxHeight.get() - minHeight.get())))
+                .spreadHorizontally();
 
         return Optional.of(createdFeature);
     }
@@ -80,8 +81,8 @@ public abstract class OreFeature<T extends IPlacementConfig> extends ConfigBase 
     }
 
     protected boolean canGenerate() {
-        return minHeight.get() < maxHeight.get() && clusterSize.get() > 0 && enable.get()
-                && !ModConfigs.COMMON.worldGen.disable.get();
+        return minHeight.get() >= maxHeight.get() || clusterSize.get() <= 0 || !enable.get()
+                || ModConfigs.COMMON.worldGen.disable.get();
     }
 
     protected abstract Pair<Placement<T>, T> getPlacement();

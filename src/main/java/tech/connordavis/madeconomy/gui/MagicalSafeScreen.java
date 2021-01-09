@@ -7,7 +7,6 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.ITextComponent;
 import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.containers.MagicalSafeContainer;
-import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class MagicalSafeScreen extends ContainerScreen<MagicalSafeContainer> {
     private static final ResourceLocation BACKGROUND_TEXTURE = new ResourceLocation(MadEconomy.ID, "textures/gui/magical_safe.png");
@@ -26,22 +25,24 @@ public class MagicalSafeScreen extends ContainerScreen<MagicalSafeContainer> {
         super.render(matrixStack, mouseX, mouseY, partialTicks);
 
         this.renderBackground(matrixStack);
-        this.renderHoveredTooltip(matrixStack, mouseX, mouseY);
+        this.drawMouseoverTooltip(matrixStack, mouseX, mouseY);
     }
 
     @Override
-    protected void drawGuiContainerForegroundLayer(MatrixStack matrixStack, int x, int y) {
-        this.font.drawString(matrixStack, this.title.getString(), 3.0f, 3.0f, 16777215);
-        this.font.drawString(matrixStack, this.playerInventory.getDisplayName().getString(), 3.0f, (float) this.ySize - 92, 16777215);
+    protected void drawForeground(MatrixStack p_230451_1_, int p_230451_2_, int p_230451_3_) {
+        super.drawForeground(p_230451_1_, p_230451_2_, p_230451_3_);
+        this.textRenderer.draw(p_230451_1_, this.title.getString(), 3.0f, 3.0f, 16777215);
+        this.textRenderer.draw(p_230451_1_, this.playerInventory.getDisplayName().getString(), 3.0f, (float) this.ySize - 92, 16777215);
     }
 
     @Override
-    protected void drawGuiContainerBackgroundLayer(MatrixStack matrixStack, float partialTicks, int mouseX, int mouseY) {
-        this.minecraft.getTextureManager().bindTexture(BACKGROUND_TEXTURE);
+    protected void drawBackground(MatrixStack p_230450_1_, float p_230450_2_, int p_230450_3_, int p_230450_4_) {
+        this.getMinecraft().getTextureManager().bindTexture(BACKGROUND_TEXTURE);
 
         int x = (this.width - this.xSize) / 2;
         int y = (this.height - this.ySize) / 2;
 
-        this.blit(matrixStack, x, y, 0, 0, this.xSize, this.ySize);
+        this.drawTexture(p_230450_1_, x, y, 0, 0, this.xSize, this.ySize);
     }
+
 }

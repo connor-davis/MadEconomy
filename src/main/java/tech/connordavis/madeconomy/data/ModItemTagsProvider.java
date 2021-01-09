@@ -22,9 +22,9 @@ public class ModItemTagsProvider extends ItemTagsProvider {
         copy(ModTags.Blocks.STORAGE_BLOCKS_SILVER, ModTags.Items.STORAGE_BLOCKS_SILVER);
         copy(Tags.Blocks.STORAGE_BLOCKS, Tags.Items.STORAGE_BLOCKS);
 
-        getOrCreateBuilder(ModTags.Items.NUGGETS_SILVER).add(ModItems.SILVER_NUGGET.get());
-        getOrCreateBuilder(Tags.Items.NUGGETS).addTag(ModTags.Items.NUGGETS_SILVER);
-        getOrCreateBuilder(ModTags.Items.INGOTS_SILVER).add(ModItems.SILVER_INGOT.get());
-        getOrCreateBuilder(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_SILVER);
+        getOrCreateTagBuilder(ModTags.Items.NUGGETS_SILVER).add(ModItems.SILVER_NUGGET.get());
+        getOrCreateTagBuilder(Tags.Items.NUGGETS).addTag(ModTags.Items.NUGGETS_SILVER);
+        getOrCreateTagBuilder(ModTags.Items.INGOTS_SILVER).add(ModItems.SILVER_INGOT.get());
+        getOrCreateTagBuilder(Tags.Items.INGOTS).addTag(ModTags.Items.INGOTS_SILVER);
     }
 }

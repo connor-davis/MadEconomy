@@ -82,9 +82,7 @@ public class MagicalSafeTileEntity extends LockableLootTileEntity {
     }
 
     @Override
-    public void read(BlockState state, CompoundNBT compound) {
-        super.read(state, compound);
-
+    public void deserializeNBT(CompoundNBT compound) {
         this.safeContents = NonNullList.withSize(this.getSizeInventory(), ItemStack.EMPTY);
 
         if (!this.checkLootAndRead(compound)) {

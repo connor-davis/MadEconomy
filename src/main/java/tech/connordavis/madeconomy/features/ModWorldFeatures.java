@@ -39,7 +39,7 @@ public enum ModWorldFeatures {
             if (!createFeature.isPresent())
                 continue;
 
-            event.getGeneration().withFeature(entry.feature.getGenerationStage(), createFeature.get());
+            event.getGeneration().feature(entry.feature.getGenerationStage(), createFeature.get());
         }
     }
 

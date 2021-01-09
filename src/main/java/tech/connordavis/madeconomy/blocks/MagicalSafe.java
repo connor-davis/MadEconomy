@@ -12,9 +12,10 @@ import net.minecraft.item.BlockItemUseContext;
 import net.minecraft.state.DirectionProperty;
 import net.minecraft.state.StateContainer;
 import net.minecraft.tileentity.TileEntity;
-import net.minecraft.util.*;
+import net.minecraft.util.Direction;
+import net.minecraft.util.Mirror;
+import net.minecraft.util.Rotation;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.BlockRayTraceResult;
 import net.minecraft.util.math.shapes.ISelectionContext;
 import net.minecraft.util.math.shapes.VoxelShape;
 import net.minecraft.util.text.ITextComponent;
@@ -30,7 +31,6 @@ import tech.connordavis.madeconomy.tileentities.ModTileEntityTypes;
 
 import javax.annotation.Nullable;
 
-@SuppressWarnings({"NullableProblems", "deprecation"})
 public class MagicalSafe extends Block {
     public static final DirectionProperty FACING = HorizontalBlock.HORIZONTAL_FACING;
 
@@ -68,8 +68,9 @@ public class MagicalSafe extends Block {
         }
     }
 
+
     @Override
-    public ActionResultType onBlockActivated(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand handIn, BlockRayTraceResult hit) {
+    public void onBlockClicked(BlockState state, World world, BlockPos pos, PlayerEntity player) {
         if (!world.isRemote) {
             TileEntity tile = world.getTileEntity(pos);
 
@@ -87,10 +88,8 @@ public class MagicalSafe extends Block {
                 };
 
                 NetworkHooks.openGui((ServerPlayerEntity) player, containerProvider, pos);
-                return ActionResultType.SUCCESS;
             }
         }
-        return ActionResultType.FAIL;
     }
 
     @Override

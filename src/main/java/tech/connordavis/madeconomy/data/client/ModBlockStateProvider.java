@@ -5,7 +5,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import tech.connordavis.madeconomy.MadEconomy;
 import tech.connordavis.madeconomy.blocks.ModBlocks;
-import tech.connordavis.madeconomy.utils.ModProperties;
 
 public class ModBlockStateProvider extends BlockStateProvider {
     public ModBlockStateProvider(DataGenerator gen, ExistingFileHelper exFileHelper) {
